@@ -1,0 +1,17 @@
+name: Build and Push
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  call-workflow-1-in-local-repo:
+    permissions:
+      packages: write
+      contents: read
+    uses: evgnomon/ark/.github/workflows/container.yaml@v0.1.0
+    with:
+      docker-registry: ghcr.io
+      image-name: ${{ github.repository }}
+    secrets:
+        token: ${{ secrets.GITHUB_TOKEN }}
