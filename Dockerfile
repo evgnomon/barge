@@ -1,3 +1,4 @@
 FROM ghcr.io/evgnomon/ark:main
 
-RUN pip install catamaran==v0.1.4 poetry
+RUN pip install catamaran==v0.1.4 poetry \
+  && ansible-galaxy collection install evgnomon.catamaran
