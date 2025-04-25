@@ -1,18 +1,29 @@
-name: Build and Push
+name: Yacht
+
 on:
   push:
     branches:
       - '*'
-  workflow_dispatch:
+    tags:
+      - "*"
+  delete:
+    branches:
+      - '*'
+      - '!main'
 
 jobs:
-  call-workflow-1-in-local-repo:
+  yacht:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/evgnomon/barge:main
     permissions:
-      packages: write
       contents: read
-    uses: evgnomon/ark/.github/workflows/container.yaml@v0.1.0
-    with:
-      docker-registry: ghcr.io
-      image-name: ${{ github.repository }}
-    secrets:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      packages: write
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run Playbook
+      uses: evgnomon/yacht@main
+      with:
+        vault: ${{ secrets.VAULT_FILE }}
+        vault_pass: ${{ secrets.VAULT_PASS }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
