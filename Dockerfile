@@ -1,7 +1,7 @@
 FROM ghcr.io/evgnomon/ark:main
 
 ENV ANSIBLE_COLLECTIONS_PATH=/opt/ansible/collections
-ENV CATAMARAN_VERSION=v0.2.7
+ENV CATAMARAN_VERSION=v0.2.8
 ENV EGET_VERSION=v1.3.4
 
 RUN pip install catamaran==${CATAMARAN_VERSION} hcloud poetry \
