@@ -3,6 +3,7 @@ FROM ghcr.io/evgnomon/ark:main
 ENV ANSIBLE_COLLECTIONS_PATH=/opt/ansible/collections
 ENV CATAMARAN_VERSION=v0.2.9
 ENV EGET_VERSION=v1.3.4
+ENV MKDEB_VERSION=0.2.2
 
 RUN pip install catamaran==${CATAMARAN_VERSION} hcloud poetry \
   && ansible-galaxy collection install evgnomon.catamaran --collections-path ${ANSIBLE_COLLECTIONS_PATH} \
@@ -12,4 +13,4 @@ RUN pip install catamaran==${CATAMARAN_VERSION} hcloud poetry \
 COPY evgnomon.asc /etc/apt/trusted.gpg.d/
 COPY evgnomon.sources /etc/apt/sources.list.d/
 
-RUN apt-get update && apt-get install -y mkdeb=0.2.1
+RUN apt-get update && apt-get install -y mkdeb=$MKDEB_VERSION tree
