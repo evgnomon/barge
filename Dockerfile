@@ -12,4 +12,4 @@ RUN pip install catamaran==${CATAMARAN_VERSION} hcloud poetry \
 COPY evgnomon.asc /etc/apt/trusted.gpg.d/
 COPY evgnomon.sources /etc/apt/sources.list.d/
 
-RUN apt-get update && apt-get install -y mkdeb=0.2.0
+RUN apt-get update && apt-get install -y mkdeb=0.2.1
