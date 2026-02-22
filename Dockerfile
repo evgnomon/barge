@@ -5,7 +5,7 @@ ENV CATAMARAN_VERSION=v0.2.16
 ENV EGET_VERSION=v1.3.4
 ENV MKDEB_VERSION=0.3.0
 
-RUN pip install catamaran==${CATAMARAN_VERSION} hcloud poetry \
+RUN pip3 install catamaran==${CATAMARAN_VERSION} hcloud poetry \
   && ansible-galaxy collection install evgnomon.catamaran --collections-path ${ANSIBLE_COLLECTIONS_PATH} \
   && go install github.com/zyedidia/eget@${EGET_VERSION} \
   && go install github.com/digitalocean/doctl/cmd/doctl@latest
